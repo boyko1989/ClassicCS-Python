@@ -1,4 +1,5 @@
 from typing import Dict
+from typing import Generator
 
 memo: Dict[int, int] = {0: 0, 1: 1}
 
@@ -22,10 +23,25 @@ def fib_simple(n: int) -> int:
     next: int = 1
 
     for _ in range(1, n):
-        last, next = next, last + 1
+        last, next = next, last + next
     return next
 
-# print(fib_m(3))
 
-for i in range(1, 9):
-    print(fib_simple(i))
+def fib_gener(n: int) -> Generator[int, None, None]:
+    yield 0
+
+    if n > 0: yield 1
+    last: int = 0
+    next: int = 1
+    for _ in range(1, n):
+        last, next = next, last + next
+        yield next
+
+
+# print(fib_m(8))
+
+# for i in range(1, 9):
+#     print(fib_gener(i))
+
+for i in fib_gener(8):
+    print(i)
