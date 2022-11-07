@@ -1,10 +1,22 @@
 from typing import List
+import random
 
 
-def arr_create(count_of_elements: int):
+def arr_create(count_of_elements: int, start: int):
     array = []
-    for i in range(5):
+    for i in range(start, count_of_elements + start):
         array.append(i)
+
+    return array
+
+
+def arr_create_rand(count_of_elements: int):
+    array = []
+
+    while len(array) < count_of_elements:
+        a = random.randint(0, count_of_elements - 1)
+        if a not in array:
+            array.append(a)
 
     return array
 
@@ -98,8 +110,8 @@ def arr_insert(array: List, a: int, index: int):
     # return tmp_array
 
     array.append(0)
-    len_array = len(array)
-    for i in range(len_array - 1, index-1, -1):
+    len_array: int = len(array)
+    for i in range(len_array - 1, index - 1, -1):
         array[i] = array[i - 1]
 
     array[index] = a
@@ -107,14 +119,33 @@ def arr_insert(array: List, a: int, index: int):
     return array
 
 
-A = arr_create(5)
+def arr_cycl_element(array: List, index: int):
+    """Циклическое перемещение произвольного элемента к началу массива
 
-# print(arr_reverse(A))
-# print(arr_change(A, 100, 3))
-# print(arr_turn(A, 1, 3))
-# print(arr_shift_l(A))
+    :param array: List - Изменяемый массив
+    :param index: int - Индекс элемента, который будет перемещаться
+    :return: None
+    """
+    print(array)
 
-print(arr_insert(A, 100, 2))
+    for i in range(index, 0, -1):
+        print(i, ":")
+        tmp = array[i - 1]
+        array[i - 1] = array[i]
+        array[i] = tmp
+        print(array)
 
-# B = arr_create(5)
-# print(arr_shift_r(B))
+
+if __name__ == '__main__':
+    A = arr_create(5, 3)
+
+    # print(arr_reverse(A))
+    # print(arr_change(A, 100, 3))
+    # print(arr_turn(A, 1, 3))
+    # print(arr_shift_l(A))
+
+    # print(arr_insert(A, 100, 2))
+
+    arr_cycl_element(A, 3)
+    # B = arr_create(5)
+    # print(arr_shift_r(B))
