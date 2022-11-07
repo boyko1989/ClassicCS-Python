@@ -1,5 +1,6 @@
 from typing import List
 import random
+import time
 
 
 def arr_create(count_of_elements: int, start: int):
@@ -62,6 +63,11 @@ def arr_turn(array: List, ind_frst: int, ind_scnd: int):
 
 
 def arr_shift_l(array: List):
+    """Сдвиг элементов без переполнения влево
+
+    :param array: List - Изменяемый массив
+    :return: List
+    """
     i = 0
     while i <= len(array) - 1:
         if i == len(array) - 1:
@@ -75,6 +81,11 @@ def arr_shift_l(array: List):
 
 
 def arr_shift_r(array: List):
+    """Сдвиг элементов без переполнения вправо
+
+    :param array: List - Изменяемый массив
+    :return: List
+    """
     # array = arr_reverse(array)
     # array.append(0)
     # array = arr_reverse(array)
@@ -136,8 +147,41 @@ def arr_cycl_element(array: List, index: int):
         print(array)
 
 
+def arr_max(array: List):
+    """Поиск максимального элемента в массиве
+
+    :param array: List - Изменяемый массив
+    :return max: int
+    """
+    max: int = 0
+    i: int = 0
+    while i <= len(array) - 1:
+        if array[max] < array[i]:
+            max = i
+        i += 1
+
+    return max
+
+
+def arr_min(array: List):
+    """Поиск максимального элемента в массиве
+
+    :param array: List - Изменяемый массив
+    :return min: int
+    """
+    min: int = 0
+    i: int = 0
+    while i <= len(array) - 1:
+        if array[min] > array[i]:
+            min = i
+        i += 1
+
+    return min
+
+
 if __name__ == '__main__':
-    A = arr_create(5, 3)
+    # A = arr_create(5, 0)
+    R = arr_create_rand(5)
 
     # print(arr_reverse(A))
     # print(arr_change(A, 100, 3))
@@ -146,6 +190,13 @@ if __name__ == '__main__':
 
     # print(arr_insert(A, 100, 2))
 
-    arr_cycl_element(A, 3)
+    # arr_cycl_element(A, 3)
     # B = arr_create(5)
     # print(arr_shift_r(B))
+
+    print(R, arr_max(R))
+    print(R, arr_min(R))
+
+    # while True:
+    #     arr_max(arr_create_rand(50))
+    #     time.sleep(0.5)
