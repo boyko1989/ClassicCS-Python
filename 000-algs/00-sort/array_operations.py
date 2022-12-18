@@ -135,16 +135,16 @@ def arr_cycl_element(array: List, index: int):
 
     :param array: List - Изменяемый массив
     :param index: int - Индекс элемента, который будет перемещаться
-    :return: None
+    :return: List
     """
     print(array)
 
     for i in range(index, 0, -1):
-        print(i, ":")
         tmp = array[i - 1]
         array[i - 1] = array[i]
         array[i] = tmp
-        print(array)
+
+    return print(array)
 
 
 def arr_max(array: List):
@@ -164,7 +164,7 @@ def arr_max(array: List):
 
 
 def arr_min(array: List):
-    """Поиск максимального элемента в массиве
+    """Поиск минимального элемента в массиве
 
     :param array: List - Изменяемый массив
     :return min: int
@@ -194,8 +194,10 @@ if __name__ == '__main__':
     # B = arr_create(5)
     # print(arr_shift_r(B))
 
-    print(R, arr_max(R))
-    print(R, arr_min(R))
+    # print(R, arr_max(R))
+    # print(R, arr_min(R))
+
+    print(arr_cycl_element(R, arr_min(R)))
 
     # while True:
     #     arr_max(arr_create_rand(50))
